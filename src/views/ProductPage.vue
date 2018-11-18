@@ -1,6 +1,6 @@
 <template>
   <div id="product">
-    <img :src="$route.params.imgUrl" />
+    <img :src=$route.params.imgUrl />
     <div class="info">
       <h1>{{$route.params.pname}}</h1>
       <p><b>Owner: </b>{{$route.params.owner}}</p>
@@ -8,7 +8,7 @@
       <p><b>End time: </b>{{$route.params.timeout}}</p>
       <Countdown :end=$route.params.timeout></Countdown>
     </div>
-
+    <Countdown class="hide" :end=$route.params.timeout></Countdown>
   </div>
 </template>
 
@@ -17,6 +17,9 @@
 
   export default {
     name: 'product',
+    props:{
+      end: String
+    },
     components: {
       Countdown
     }
@@ -40,6 +43,9 @@
   }
   .info{
     text-align: left;
+  }
+  .hide{
+    visibility: hidden;
   }
 
 </style>

@@ -1,12 +1,12 @@
 <template>
   <div class="home">
     <div class="search-wrapper">
+      <label>Search title:</label>
       <input type="text" v-model="search" placeholder="Search title.."/>
-          <label>Search title:</label>
     </div>
     <div class="wrapper">
-      <div class="card" v-for="product in productPreview">
-        <productPreview :name=product.name :owner=product.owner :highestBid=product.highestBid :timeout= product.timeout :imgUrl=product.imgUrl></productPreview>
+      <div class="card" v-for="product in filteredList">
+        <productPreview :name=product.name :owner=product.owner :highestBid=product.highestBid :timeout=product.timeout :imgUrl=product.imgUrl></productPreview>
       </div>
     </div>
     <heiWorld msg="heiWorld"/>
@@ -57,20 +57,20 @@ export default {
           1,
           'Brukt Jakke',
           'Frida Tryggestad Klockmann',
-          2,
+          'frida',
           'https://images.finncdn.no/dynamic/960w/2018/9/vertical-5/20/5/129/691/465_136669269.jpg',
           '150',
-          2,
+          'emilia',
           "November 27, 2018"
         ),
         new Product(
           2,
           'Smykke',
           'Emilia Botnen Van den Bergh',
-          1,
+          'emilia',
           'https://www.gullfunn.no/content/images/thumbs/0003350_smykke-i-solv.jpeg',
           '250',
-          1 ,
+          'frida',
           "December 24, 2018"
         )],
       users: [

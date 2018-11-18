@@ -12,6 +12,7 @@
     </div>
     <router-view @authenticated="setAuthenticated" />
   </div>
+
 </template>
 
 

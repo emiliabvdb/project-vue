@@ -14,7 +14,7 @@
         <div  v-for="product in productPreview">
           <div v-if="product.ownerId==user.uid">
             <productPreview :name=product.name :owner=product.owner :highestBid=product.highestBid :timeout= product.timeout :imgUrl=product.imgUrl></productPreview>
-          </div><br>
+          </div>
         </div>
       </div>
      <div class="highestBidOn">
@@ -22,19 +22,11 @@
       <div  v-for="product in productPreview">
         <div v-if="product.highestBidder==user.uid">
           <productPreview :name=product.name :owner=product.owner :highestBid=product.highestBid :timeout= product.timeout :imgUrl=product.imgUrl></productPreview>
-        </div><br>
+        </div>
       </div>
      </div>
      </div>
     </div>
-    <!-- <div class="test">
-      <img :src="imgurl" />
-      <div class = "info">
-        <p><b>Name:</b> {{fname + " " + lname}}</p>
-        <p><b>Email:</b> {{email}} </p>
-        <p><b>Rating:</b> {{rating}}</p>
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -66,6 +58,13 @@ class Product {
 
   export default {
     name: 'profile',
+    props: {
+      uid: String,
+      name: String,
+      email: String,
+      password: String,
+      imgUrl: String
+    },
     components: {
       productPreview
     },
@@ -107,13 +106,7 @@ class Product {
             '250',
             'frida',
             "December 24, 2018"
-          )],
-
-        imgurl:'https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-9/38043185_10155473704291373_4817665254009864192_n.jpg?_nc_cat=102&_nc_ht=scontent-arn2-1.xx&oh=87db07d966b1f4b4f06f78068ad25f2a&oe=5C6C41DF',
-        fname: 'Emilia Botnen',
-        lname: 'Van den Bergh',
-        email: 'emiliabvdb@email.no',
-        rating: 4.9
+          )]
       }
     }
   };
@@ -151,8 +144,16 @@ class Product {
     background-color: pink;
     justify-content: space-around;
   }
+  .user{
+
+  }
+  .usersproduct{
+    display:  flex;
+  }
   .highestBidOn{
+    width: 50%
   }
   .ownerOf{
+    width: 50%
   }
 </style>

@@ -1,7 +1,7 @@
 <template>
-  <div class="about">
+  <div class="profilepage">
     <profile/>
-    
+
   </div>
 </template>
 <script>

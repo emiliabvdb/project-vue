@@ -1,14 +1,16 @@
 <template>
       <div class="product">
-        <img :src=imgUrl ></img>
+        <router-link :to="{ name: 'product', params: {pname: name, owner: owner, highestBid: highestBid, timeout: timeout, imgUrl: imgUrl } }">
+        <img :src=imgUrl ></img></router-link>
         <div class="info">
           <p><b>Name:</b> {{name}}</p>
           <p><b>Owner:</b> {{owner}}</p>
           <p><b>highestBid:</b> {{highestBid}}</p>
           <b>Time left: </b> <Countdown :end=timeout></Countdown>
-          <br>
-          <router-link :to="{ name: 'product', params: {pname: name, owner: owner, highestBid: highestBid, timeout:timeout, imgUrl: imgUrl } }">more..</router-link>
+          <p class="underline"><router-link :to="{ name: 'product', params: {pname: name, owner: owner, highestBid: highestBid, timeout: timeout, imgUrl: imgUrl } }">more..</router-link>
+          </p>
         </div>
+        <Countdown class="hide" :end=timeout></Countdown>
   </div>
 </template>
 
@@ -69,6 +71,13 @@ img{
 
 .info{
   text-align: left;
+}
+
+.underline{
+  text-decoration-line: underline;
+}
+.hide{
+  visibility: hidden;
 }
 
 </style>
