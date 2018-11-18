@@ -8,7 +8,7 @@
       <p><b>End time: </b>{{$route.params.timeout}}</p>
       <Countdown :end=$route.params.timeout></Countdown>
     </div>
-    
+
   </div>
 </template>
 

@@ -1,12 +1,12 @@
 <template>
   <div id="app">
   <div class="search-wrapper">
-    <input type="text" v-model="search" placeholder="Search title.."/>
+    <input type="text" v-model="owner" placeholder="Search title.."/>
         <label>Search title:</label>
   </div>
   <div class="wrapper">
-    <div class="card" v-for="product in filteredList">
-      <productList :name=product.name :owner=product.owner :highestBid=product.highestBid :timeout= product.timeout :imgUrl=product.imgUrl></productList>
+    <div class="card" v-for="product in ownersList">
+      <productPreview :name=product.name :owner=product.owner :highestBid=product.highestBid :timeout= product.timeout :imgUrl=product.imgUrl></productPreview>
     </div>
   </div>
 </div>
@@ -15,7 +15,7 @@
 
 <script>
 
-import productList from "@/components/productList.vue";
+import productPreview from "@/components/productPreview.vue";
 
 class Product {
   constructor(pid, name, owner, ownerId, imgUrl, highestBid, highestBidder, timeout) {
@@ -34,8 +34,8 @@ export default {
   name:'about',
   data() {
     return{
-    search: '',
-    productList: [
+    owner: '',
+    productPreview: [
       new Product(
         1,
         'Brukt Jakke',
@@ -58,12 +58,12 @@ export default {
       )]
   }},
   components: {
-    productList
+    productPreview
   },
   computed: {
-    filteredList() {
-      return this.productList.filter(product => {
-        return product.name.toLowerCase().includes(this.search.toLowerCase())
+    ownersList() {
+      return this.productPreview.filter(product => {
+        return product.owner.toLowerCase().includes(this.owner.toLowerCase())
       })
     }
   }

@@ -5,8 +5,8 @@
           <label>Search title:</label>
     </div>
     <div class="wrapper">
-      <div class="card" v-for="product in filteredList">
-        <productList :name=product.name :owner=product.owner :highestBid=product.highestBid :timeout= product.timeout :imgUrl=product.imgUrl></productList>
+      <div class="card" v-for="product in productPreview">
+        <productPreview :name=product.name :owner=product.owner :highestBid=product.highestBid :timeout= product.timeout :imgUrl=product.imgUrl></productPreview>
       </div>
     </div>
     <heiWorld msg="heiWorld"/>
@@ -16,7 +16,7 @@
 <script>
 // @ is an alias to /src
 import heiWorld from "@/components/heiWorld.vue";
-import productList from "@/components/productList.vue";
+import productPreview from "@/components/productPreview.vue";
 
 class Product {
   constructor(pid, name, owner, ownerId, imgUrl, highestBid, highestBidder, timeout) {
@@ -46,13 +46,13 @@ export default {
   name: "home",
   components: {
     heiWorld,
-    productList
+    productPreview
   },
   data () {
     return {
       search: '',
       title: 'Products',
-      productList: [
+      productPreview: [
         new Product(
           1,
           'Brukt Jakke',
@@ -93,7 +93,7 @@ export default {
   },
   computed: {
     filteredList() {
-      return this.productList.filter(product => {
+      return this.productPreview.filter(product => {
         return product.name.toLowerCase().includes(this.search.toLowerCase())
       })
     }

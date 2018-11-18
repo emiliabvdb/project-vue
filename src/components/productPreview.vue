@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     filteredProducts: function(){
-      return this.productList.filter((product) => {
+      return this.productPreview.filter((product) => {
         return product.name.match(this.search);
       });
     }

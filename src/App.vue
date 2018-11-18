@@ -16,6 +16,8 @@
 
 
 <script>
+import { mapState, mapActions } from 'vuex';
+
   export default {
     name: 'profile',
     data () {
@@ -25,19 +27,27 @@
         mockAccount: {
             username: "emilia",
             password: "emilie"
+        },
+        mockAccountf: {
+            username: "frida",
+            password: "fride"
         }
       }
     },
 //    mounted() {}, første som skjer på siden
-
-    methods: {
-      setAuthenticated(status) {
-          this.authenticated = status;
-      },
-      logout() {
-          this.authenticated = false;
-      }
+computed: {
+    ...mapState({
+        alert: state => state.alert
+    })
+},
+methods: {
+    setAuthenticated(status) {
+        this.authenticated = status;
+    },
+    logout() {
+        this.authenticated = false;
     }
+}
   };
 </script>
 

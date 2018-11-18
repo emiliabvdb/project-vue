@@ -4,6 +4,7 @@
         <input type="text" name="username" v-model="input.username" placeholder="Username" />
         <input type="password" name="password" v-model="input.password" placeholder="Password" />
         <button type="button" v-on:click="login()">Login</button>
+        
     </div>
 </template>
 <script>
@@ -23,7 +24,11 @@
                     if(this.input.username == this.$parent.mockAccount.username && this.input.password == this.$parent.mockAccount.password) {
                         this.$emit("authenticated", true);
                         this.$router.replace({ name: "myprofile" });
-                    } else {
+                    }
+                    else if(this.input.username == this.$parent.mockAccountf.username && this.input.password == this.$parent.mockAccountf.password) {
+                          this.$emit("authenticated", true);
+                          this.$router.replace({ name: "myprofile" });
+                      } else {
                         console.log("The username and / or password is incorrect");
                     }
                 } else {
