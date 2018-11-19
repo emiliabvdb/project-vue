@@ -1,13 +1,13 @@
 <template>
       <div class="product">
-        <router-link :to="{ name: 'product', params: {pname: name, owner: owner, highestBid: highestBid, timeout: timeout, imgUrl: imgUrl } }">
+        <router-link :to="{ name: 'product', params: {pname: name, owner: owner, highestBid: highestBid, highestBidder: highestBidder, timeout: timeout, imgUrl: imgUrl, pid:pid } }">
         <img :src=imgUrl ></img></router-link>
         <div class="info">
-          <p><b>Name:</b> {{name}}</p>
-          <p><b>Owner:</b> {{owner}}</p>
-          <p><b>highestBid:</b> {{highestBid}}</p>
+          <p><b>Name:</b> {{name}} </p>
+          <p><b>Owner:</b> {{prodOwnerName}}</p>
+          <p><b>Highest Bid:</b> {{highestBid}}$ by {{highestBidderName}} </p>
           <b>Time left: </b> <Countdown :end=timeout></Countdown>
-          <p class="underline"><router-link :to="{ name: 'product', params: {pname: name, owner: owner, highestBid: highestBid, timeout: timeout, imgUrl: imgUrl } }">more..</router-link>
+          <p class="underline"><router-link :to="{ name: 'product', params: {pname: name, owner: owner, highestBid: highestBid, highestBidder: highestBidder, timeout: timeout, imgUrl: imgUrl, pid:pid } }">more..</router-link>
           </p>
         </div>
         <Countdown class="hide" :end=timeout></Countdown>
@@ -16,22 +16,36 @@
 
 <script>
 import Countdown from 'vuejs-countdown';
+
+
 export default {
   props: {
     name: String,
+    pid:String,
     owner: String,
     highestBid: String,
+    highestBidder: String,
     timeout: String,
     imgUrl: String
+
   },
   components: {
     Countdown
   },
-  computed: {
-    filteredProducts: function(){
-      return this.productPreview.filter((product) => {
-        return product.name.match(this.search);
-      });
+  computed:{
+    prodOwnerName(){
+      for(var i = 0; i <this.$parent.$parent.users.length; i++ ){
+        if(this.$parent.$parent.users[i].uid == this.owner){
+          return this.$parent.$parent.users[i].name;
+        }
+      }
+    },
+    highestBidderName(){
+      for(var i = 0; i<this.$parent.$parent.users.length; i++){
+        if(this.$parent.$parent.users[i].uid == this.highestBidder){
+          return this.$parent.$parent.users[i].name;
+        }
+      }
     }
   }
 };

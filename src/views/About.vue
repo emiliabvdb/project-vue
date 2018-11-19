@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <p>This is a part of our assignment about software technologies for DAT250.</p>
 
   </div>
 </template>

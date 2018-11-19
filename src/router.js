@@ -33,7 +33,7 @@ export default new Router({
     },
     {
       name: "product",
-      path: "/product/:pname",
+      path: "/product",
       component: () => import("./views/ProductPage.vue")
     }
   ]
