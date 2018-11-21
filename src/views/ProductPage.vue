@@ -4,8 +4,13 @@
     <div class="info">
       <h1>{{$route.params.pname}}</h1>
       <p><b>Owner: </b>{{prodOwnerName}}</p>
-      <p><b>Highest bid: </b>{{this.$parent.products[$route.params.pid].highestBid}}</p>
-      <p><b>By: </b>{{highestBidderName}}</p>
+      <p><b>Highest bid: </b>{{highestBid}}</p>
+      <div v-if="$route.params.highestBidder!='none'">
+        <p><b>By </b>{{highestBidderName}}</p>
+      </div>
+      <div v-else>
+        <p>{{highestBidderName}}</p>
+      </div>
       <p><b>End time: </b>{{$route.params.timeout}}</p>
       <Countdown :end=$route.params.timeout></Countdown>
 
@@ -22,7 +27,7 @@
   import makeBid from '@/components/makeBid.vue';
 
   export default {
-    name: 'product',
+    name: 'ProductPage',
     data (){
       return{
         bid:''
@@ -41,19 +46,22 @@
           if(this.$parent.users[i].uid == this.$parent.products[this.$route.params.pid].owner){
             return this.$parent.users[i].name;
           }
-        }
-      },
-      highestBidderName(){
+      }
+    },
+    highestBidderName(){
         for(var i = 0; i<this.$parent.users.length; i++){
           if(this.$parent.users[i].uid == this.$parent.products[this.$route.params.pid].highestBidder){
             return this.$parent.users[i].name;
           }
         }
-      }
-
+        return "There are no bids on this product."
+    },
+    highestBid(){
+      return this.$parent.products[this.$route.params.pid].highestBid;
     }
+  }
 
-  };
+};
 
 </script>
 

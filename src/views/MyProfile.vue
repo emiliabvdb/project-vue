@@ -10,39 +10,37 @@
       </div>
       <div class="usersproduct">
         <div class="ownerOf">
-        <p>Owner of:</p>
-
-        <div  v-for="product in $parent.products">
-          <div v-if="product.owner==user.uid">
-            <productPreview :name=product.name :owner=product.owner :highestBid=product.highestBid :timeout=product.timeout :imgUrl=product.imgUrl :pid=product.pid :highestBidder=product.highestBidder ></productPreview>
+          <productFactory/>
+          <p>Owner of:</p>
+          <div  v-for="product in $parent.products">
+            <div v-if="product.owner==user.uid">
+              <productPreview :name=product.name :owner=product.owner :highestBid=product.highestBid :timeout=product.timeout :imgUrl=product.imgUrl :pid=product.pid :highestBidder=product.highestBidder ></productPreview>
+            </div>
+          </div>
+        </div>
+        <div class="highestBidOn">
+          <p>Have highest bid on:</p>
+          <div  v-for="product in $parent.products">
+            <div v-if="product.highestBidder==user.uid">
+              <productPreview :name=product.name :owner=product.owner :highestBid=product.highestBid :timeout=product.timeout :imgUrl=product.imgUrl :pid=product.pid :highestBidder=product.highestBidder ></productPreview>
+            </div>
           </div>
         </div>
       </div>
-      <div class="highestBidOn">
-      <p>Have highest bid on:</p>
-      <div  v-for="product in $parent.products">
-        <div v-if="product.highestBidder==user.uid">
-          <productPreview :name=product.name :owner=product.owner :highestBid=product.highestBid :timeout=product.timeout :imgUrl=product.imgUrl :pid=product.pid :highestBidder=product.highestBidder ></productPreview>
-        </div>
-      </div>
-      </div>
-      </div>
-    </div>
 
-  <profile />
-
+   </div>
   </div>
 </template>
 <script>
 
-import Profile from "@/components/profile.vue";
-import productPreview from "@/components/productPreview.vue";
+  import productFactory from "@/components/productFactory.vue";
+  import productPreview from "@/components/productPreview.vue";
 
 
   export default {
     name: "myprofile",
     components: {
-      Profile,
+      productFactory,
       productPreview
     },
     mounted: function(){
@@ -59,31 +57,34 @@ import productPreview from "@/components/productPreview.vue";
 </script>
 
 <style scoped>
-img{
-  width: 200px;
-  height: 200px;
-  background-color: grey;
-  margin: 20px;
-  object-fit: cover
-}
-.card{
-  display: flex;
-  flex-direction: row;
-  border: 1px solid lightgrey;
-}
-.info{
-  text-align: left;
-}
-.usersproduct{
-  display:  flex;
-}
-.productPreview {
-  display:table-column;
-}
-.hidden{
-  display: none;
-}
-.visible{
-  display:flex;
-}
+  img{
+    width: 200px;
+    height: 200px;
+    background-color: grey;
+    margin: 20px;
+    object-fit: cover
+  }
+  .card{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid lightgrey;
+  }
+  .info{
+    text-align: left;
+  }
+  .usersproduct{
+    display:  flex;
+  }
+  .highestBidOn{
+    width: 50%;
+  }
+  .ownerOf{
+    width: 50%;
+  }
+  .hidden{
+    display: none;
+  }
+  .visible{
+    display:flex;
+  }
 </style>
