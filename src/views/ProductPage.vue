@@ -73,8 +73,8 @@
     border: 1px solid lightgrey;
   }
   img{
-    width: 350px;
-    height: 350px;
+    max-width: 400px;
+    max-height: 400px;
     background-color: grey;
     margin: 20px;
     object-fit: cover;

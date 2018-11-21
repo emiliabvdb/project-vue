@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <h1>{{appName}}</h1>
-      <router-link to="/">Home</router-link> |
+      <router-link to="/">Shop</router-link> |
       <router-link v-if="authenticated" to="/myprofile">My profile</router-link>
       <router-link v-else to="/Login" class="s">My profile</router-link> |
       <router-link to="/about">About</router-link> |
@@ -11,7 +11,10 @@
 
     </div>
     <router-view @authenticated="setAuthenticated" />
+    <div class="footer">
       <p v-if="authenticated">logged in as: {{loggedInUser}}</p>
+    </div>
+
   </div>
 
 </template>
@@ -122,7 +125,7 @@ class User {
       },
       theUser() {
         return this.users.filter(user => {
-          return user.uid.toLowerCase().match(this.loggedInUser.toLowerCase())
+          return user.uid.toLowerCase()==(this.loggedInUser.toLowerCase())
         })
       }
     },
@@ -163,5 +166,12 @@ class User {
 }
 #nav a.router-link-exact-active.s {
   color: #2c3e50;
+}
+.footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: white;
 }
 </style>
