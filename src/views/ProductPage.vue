@@ -71,6 +71,7 @@
     display: flex;
     flex-direction: row;
     border: 1px solid lightgrey;
+    margin: auto;
   }
   img{
     max-width: 400px;

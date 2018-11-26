@@ -79,8 +79,7 @@
     flex-direction: row;
     border: 1px solid lightgrey;
     min-width: 900px;
-    margin-left: 40px;
-    margin-right: 40px;
+    margin: 40px;
   }
   .info{
     text-align: left;
